@@ -1,12 +1,14 @@
-require('./env');
+require('env');
 const app = require('app');
+const getConnection = require('database/getConnection');
 
-// 비구조화 할당 금지 cosnt { PORT } = process.env; (X)
-const PORT = process.env.PORT;
+const { PORT } = process.env;
 
 if (!PORT) {
-  throw new Error('MISSING_EVVAR');
+  throw new Error('MISSING_ENVAR');
 }
+
+getConnection();
 
 // 서버 동작
 const server = app.listen(PORT, () => {

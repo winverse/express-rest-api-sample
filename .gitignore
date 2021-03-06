@@ -1,5 +1,17 @@
+# package directories
 node_modules
 
 # environment
 .env.production
 .env.development
+
+# logs
+yarn-error.log
+
+# db info
+src/database/config/sequelize-cli.json
+
+
+# other
+.DS_Store
+

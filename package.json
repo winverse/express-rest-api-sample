@@ -4,17 +4,24 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development NODE_PATH=./src nodemon ./src/server.js"
+    "dev": "NODE_PATH=./src nodemon ./src/server.js",
+    "db:migrate": "./scripts/migrate.sh"    
   },
   "devDependencies": {
     "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "sequelize-cli": "^6.2.0"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0"
   }
 }

@@ -41,3 +41,9 @@ Create migration file using sequelize cli
 ```javascript
   yarn db:sync
 ```
+
+## Test
+
+```javascript
+  yarn test
+```

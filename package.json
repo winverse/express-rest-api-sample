@@ -6,7 +6,8 @@
   "scripts": {
     "dev": " NODE_PATH=./src nodemon ./src/server.js",
     "db:migrate": "./scripts/db-migrate.sh",
-    "db:sync": "NODE_PATH=./src node ./scripts/db-sync.js"
+    "db:sync": "NODE_PATH=./src node ./scripts/db-sync.js",
+    "test": "./scripts/test.sh"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",

@@ -20,7 +20,7 @@ const db = new Sequelize(POSTGRES_DATABASE, POSTGRES_USER, POSTGRES_PW, {
     acquire: 30000,
     idle: 10000,
   },
-  logging: console.log,
+  logging: false,
 });
 
 module.exports = db;

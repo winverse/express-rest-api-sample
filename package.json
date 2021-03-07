@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_PATH=./src nodemon ./src/server.js",
-    "db:migrate": "./scripts/migrate.sh"    
+    "dev": " NODE_PATH=./src nodemon ./src/server.js",
+    "db:migrate": "./scripts/db-migrate.sh",
+    "db:sync": "NODE_PATH=./src node ./scripts/db-sync.js"
   },
   "devDependencies": {
     "eslint": "^7.21.0",

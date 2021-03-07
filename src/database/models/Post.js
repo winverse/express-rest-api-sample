@@ -13,6 +13,7 @@ const Post = db.define(
     },
     title: Sequelize.STRING(100),
     text: Sequelize.TEXT,
+    thumbnail: Sequelize.STRING,
     fk_user_id: Sequelize.INTEGER,
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,

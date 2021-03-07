@@ -1,6 +1,6 @@
 require('env');
 const app = require('app');
-const getConnection = require('database/getConnection');
+const getConnection = require('database/get-connection');
 
 const { PORT } = process.env;
 

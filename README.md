@@ -9,6 +9,9 @@ change file name .env.development or .env.production depending on your environme
 
 This project uses [dotenv](https://www.npmjs.com/package/dotenv) to read and use .env file
 
+- Modular Routes
+- [Supported REST API Doc](https://documenter.getpostman.com/view/4627621/Tz5jfft1) (Postman)
+
 ## Project Start
 
 This project requires Node 14 or later.
@@ -31,4 +34,10 @@ Create migration file using sequelize cli
 
 ```javascript
   yarn db:migrate
+```
+
+## Sync database
+
+```javascript
+  yarn db:sync
 ```

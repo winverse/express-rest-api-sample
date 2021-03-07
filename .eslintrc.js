@@ -1,6 +1,11 @@
 module.exports = {
-  plugins: ['prettier'],
-  extends: ['airbnb-base', 'plugin:prettier/recommended'],
+  plugins: ['prettier', 'jest'],
+  extends: [
+    'airbnb-base',
+    'plugin:prettier/recommended',
+    'plugin:jest/recommended',
+    'plugin:jest/style',
+  ],
   parserOptions: {
     ecmaVersion: 2020,
   },
@@ -12,6 +17,7 @@ module.exports = {
     'import/no-unresolved': 0,
   },
   env: {
+    'jest/globals': true,
     node: true,
   },
 };

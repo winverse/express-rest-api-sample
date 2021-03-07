@@ -1,6 +1,6 @@
 # Express-rest-api-sample
 
-NodeJS REST API samle with integration Express, Sequelize
+NodeJS REST API sample with integration Express, Sequelize
 
 ## Configure Environment Variables
 

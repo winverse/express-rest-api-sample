@@ -27,7 +27,7 @@ This project requires Node 14 or later.
 Create migration file using sequelize cli
 
 ```javascript
-  npx sequelize-cli migration:generate --name migration-skeleton
+  npx sequelize-cli migration:generate --name <name>
 ```
 
 ## Running migrations

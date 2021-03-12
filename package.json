@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": " NODE_PATH=./src nodemon ./src/server.js",
-    "db:migrate": "./scripts/db-migrate.sh",
+    "db:migrate": "NODE_PATH=./src ./scripts/db-migrate.sh",
     "db:sync": "NODE_PATH=./src node ./scripts/db-sync.js",
     "test": "./scripts/test.sh"
   },
@@ -24,9 +24,11 @@
     "sequelize-cli": "^6.2.0"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "date-fns": "^2.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.5.0"

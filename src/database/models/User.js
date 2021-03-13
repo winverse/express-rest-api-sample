@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('database/db');
 
-const token = require('lib/token');
+const { generateToken } = require('lib/token');
 
 const User = db.define(
   'user',
@@ -32,7 +32,7 @@ const User = db.define(
 );
 
 User.prototype.generateUserToken = async function generateUserToken() {
-  const refreshToken = await token.generateToken(
+  const refreshToken = await generateToken(
     {
       user: this,
     },
@@ -42,7 +42,7 @@ User.prototype.generateUserToken = async function generateUserToken() {
     },
   );
 
-  const accessToken = await token.generateToken(
+  const accessToken = await generateToken(
     {
       user: this,
     },
@@ -68,7 +68,7 @@ User.prototype.refreshUserToken = async function refreshUserToken(
 
   // 15일 이하인 경우
   if (diff < 1000 * 60 * 60 * 24 * 15) {
-    refreshToken = await token.generateToken(
+    refreshToken = await generateToken(
       {
         user: this,
       },
@@ -78,7 +78,7 @@ User.prototype.refreshUserToken = async function refreshUserToken(
       },
     );
   }
-  const accessToken = await token.generateToken(
+  const accessToken = await generateToken(
     {
       user: this,
     },

@@ -1,7 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 
-const { consumeToken } = require('lib/token');
+const { consumeToken } = require('middleware');
 const routes = require('./routes');
 
 // express를 이용한 서버 구현

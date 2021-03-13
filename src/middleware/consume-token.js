@@ -5,7 +5,7 @@ const { decodeToken, setTokenCookie } = require('lib/token');
 const refresh = async (res, refreshToken) => {
   try {
     const decoded = await decodeToken(refreshToken);
-    const user = await User.findById(decoded.id);
+    const user = await User.findByPk(decoded.user.id);
 
     if (!user) {
       throw new Error('Invalid User error');
@@ -32,9 +32,11 @@ const consumeToken = async (req, res, next) => {
     }
 
     const accessTokenData = await decodeToken(accessToken);
-
+    console.log(accessTokenData);
     const { id: userId } = accessTokenData;
-    const user = await User.findById(userId);
+
+    console.log('userId');
+    const user = await User.findByPk(userId);
 
     req.user = user;
 

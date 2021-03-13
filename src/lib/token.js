@@ -8,7 +8,7 @@ if (!SECRET_KEY || !CLIENT_HOST || !API_HOST) {
 
 const generateToken = (payload, options) => {
   const jwtOptions = {
-    issure: API_HOST,
+    issuer: API_HOST,
     expiresIn: '30d',
     ...options,
   };
@@ -43,18 +43,16 @@ const setTokenCookie = (res, tokens) => {
   res.cookie('accsess_token', accessToken, {
     httpOnly: true,
     domain: !isDev ? CLIENT_HOST : undefined,
-    expires: 1000 * 60 * 60 * 1, // 1hour
+    maxAge: 1000 * 60 * 60 * 1, // 1hour
     secure: !isDev,
   });
 
   res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
     domain: !isDev ? CLIENT_HOST : undefined,
-    expires: 1000 * 60 * 60 * 24 * 30, // 30day
+    maxAge: 1000 * 60 * 60 * 24 * 30, // 30day
     secure: !isDev,
   });
-
-  res.sendStatus(200);
 };
 
 module.exports = {

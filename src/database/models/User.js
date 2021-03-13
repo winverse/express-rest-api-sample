@@ -1,7 +1,21 @@
+const crypto = require('crypto');
 const Sequelize = require('sequelize');
 const db = require('database/db');
 
 const { generateToken } = require('lib/token');
+
+const { PASSWORD_SALT } = process.env;
+
+if (!PASSWORD_SALT) {
+  throw new Error('MISSING_ENVAR');
+}
+
+function hash(password) {
+  return crypto
+    .createHmac('sha512', PASSWORD_SALT)
+    .update(password)
+    .digest('hex');
+}
 
 const User = db.define(
   'user',
@@ -19,6 +33,9 @@ const User = db.define(
       type: Sequelize.STRING,
       unique: true,
     },
+    password: {
+      type: Sequelize.STRING,
+    },
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,
   },
@@ -28,9 +45,36 @@ const User = db.define(
         fields: ['username', 'email'],
       },
     ],
+    defaultScope: {
+      attributes: { exclude: ['password'] }, // Password column removed default when user was selected
+    },
   },
 );
 
+// classMethods
+User.register = async function register({
+  username,
+  email,
+  password,
+  transaction,
+}) {
+  try {
+    const user = await this.create(
+      {
+        username,
+        email,
+        password: hash(password),
+      },
+      { transaction },
+    );
+
+    return user;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+// instanceMehtods
 User.prototype.generateUserToken = async function generateUserToken() {
   const refreshToken = await generateToken(
     {
@@ -89,6 +133,11 @@ User.prototype.refreshUserToken = async function refreshUserToken(
   );
 
   return { refreshToken, accessToken };
+};
+
+User.prototype.validatePassword = async function validatePassword(password) {
+  const hashed = hash(password);
+  return this.password === hashed;
 };
 
 module.exports = User;

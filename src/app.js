@@ -8,6 +8,7 @@ const routes = require('./routes');
 const app = express();
 
 app.use(cookieParser());
+app.use(express.json({ limit: '30mb' }));
 app.use(consumeToken);
 
 app.use('/', routes);

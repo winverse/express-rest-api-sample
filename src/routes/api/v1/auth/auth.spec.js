@@ -1,6 +1,6 @@
 const httpMocks = require('node-mocks-http');
 
-const { register, login, logout, check } = require('./auth.ctrl');
+const { register, login, logout } = require('./auth.ctrl');
 
 let req = null;
 let res = null;
@@ -33,14 +33,6 @@ describe('/api/v1/auth', () => {
     describe('[Success]', () => {
       it('should hava a logout function', () => {
         expect(typeof logout).toBe('function');
-      });
-    });
-    describe('[Failure]', () => {});
-  });
-  describe('[GET] /check', () => {
-    describe('[Success]', () => {
-      it('should hava a check function', () => {
-        expect(typeof check).toBe('function');
       });
     });
     describe('[Failure]', () => {});

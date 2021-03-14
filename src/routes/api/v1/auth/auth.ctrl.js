@@ -2,7 +2,7 @@ const Joi = require('joi');
 const { Op } = require('sequelize');
 
 const { validateSchema } = require('lib/utils');
-const { setTokenCookie, removeTokenCookie } = require('lib/token');
+const { setTokenCookie } = require('lib/token');
 const { User } = require('database/models');
 const db = require('database/db');
 
@@ -108,8 +108,4 @@ exports.logout = async (req, res) => {
   res.clearCookie('refresh_token');
 
   res.sendStatus(200);
-};
-
-exports.check = async (req, res, next) => {
-  res.send('check');
 };

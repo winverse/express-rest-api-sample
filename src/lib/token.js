@@ -55,25 +55,8 @@ const setTokenCookie = (res, tokens) => {
   });
 };
 
-const removeTokenCookie = res => {
-  res.cookie('access_token', '', {
-    httpOnly: true,
-    domain: !IS_DEV ? CLIENT_HOST : undefined,
-    maxAge: 0,
-    secure: !IS_DEV,
-  });
-
-  res.cookie('refresh_token', '', {
-    httpOnly: true,
-    domain: !IS_DEV ? CLIENT_HOST : undefined,
-    maxAge: 0,
-    secure: !IS_DEV,
-  });
-};
-
 module.exports = {
   generateToken,
   decodeToken,
   setTokenCookie,
-  removeTokenCookie,
 };

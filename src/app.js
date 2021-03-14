@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 
 const { consumeToken, errorHandler, missingPath } = require('middleware');
+const imagesDir = require('lib/images-dir');
 
 const routes = require('./routes');
 
@@ -10,6 +11,8 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json({ limit: '30mb' }));
+app.use('/images', express.static(imagesDir));
+
 app.use(consumeToken);
 
 app.use('/', routes);

@@ -6,6 +6,8 @@ if (!SECRET_KEY || !CLIENT_HOST || !API_HOST) {
   throw new Error('MISSING_ENVAR');
 }
 
+const IS_DEV = process.env.NODE_ENV !== 'production';
+
 const generateToken = (payload, options) => {
   const jwtOptions = {
     issuer: API_HOST,
@@ -38,20 +40,34 @@ const decodeToken = token => {
 const setTokenCookie = (res, tokens) => {
   const { accessToken, refreshToken } = tokens;
 
-  const isDev = process.env.NODE_ENV !== 'production';
-
-  res.cookie('accsess_token', accessToken, {
+  res.cookie('access_token', accessToken, {
     httpOnly: true,
-    domain: !isDev ? CLIENT_HOST : undefined,
+    domain: !IS_DEV ? CLIENT_HOST : undefined,
     maxAge: 1000 * 60 * 60 * 1, // 1hour
-    secure: !isDev,
+    secure: !IS_DEV,
   });
 
   res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
-    domain: !isDev ? CLIENT_HOST : undefined,
+    domain: !IS_DEV ? CLIENT_HOST : undefined,
     maxAge: 1000 * 60 * 60 * 24 * 30, // 30day
-    secure: !isDev,
+    secure: !IS_DEV,
+  });
+};
+
+const removeTokenCookie = res => {
+  res.cookie('access_token', '', {
+    httpOnly: true,
+    domain: !IS_DEV ? CLIENT_HOST : undefined,
+    maxAge: 0,
+    secure: !IS_DEV,
+  });
+
+  res.cookie('refresh_token', '', {
+    httpOnly: true,
+    domain: !IS_DEV ? CLIENT_HOST : undefined,
+    maxAge: 0,
+    secure: !IS_DEV,
   });
 };
 
@@ -59,4 +75,5 @@ module.exports = {
   generateToken,
   decodeToken,
   setTokenCookie,
+  removeTokenCookie,
 };

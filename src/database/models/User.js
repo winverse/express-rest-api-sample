@@ -135,8 +135,11 @@ User.prototype.refreshUserToken = async function refreshUserToken(
   return { refreshToken, accessToken };
 };
 
-User.prototype.validatePassword = async function validatePassword(password) {
+User.prototype.validatePassword = function validatePassword(password) {
   const hashed = hash(password);
+  if (!this.password) {
+    throw new Error('password column is required');
+  }
   return this.password === hashed;
 };
 

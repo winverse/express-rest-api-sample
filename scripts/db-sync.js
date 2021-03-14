@@ -8,7 +8,7 @@ if (!isDev) {
   throw new Error('Sync script only works in the development environment.');
 }
 
-(async () => {
+async function excute() {
   try {
     await db.authenticate();
     sync();
@@ -16,4 +16,6 @@ if (!isDev) {
   } catch (err) {
     console.error('Unable to sync:', err);
   }
-})();
+}
+
+excute();

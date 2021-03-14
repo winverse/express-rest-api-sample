@@ -1,8 +1,10 @@
 const errorHandler = (err, req, res, next) => {
   // You will send an error message through slack or telegram...
-  console.error(err.stack);
+  const message = err.stack || err;
 
-  res.status(500).send(err.message);
+  console.error(message);
+
+  res.status(500).send(err.message || err);
   next();
 };
 

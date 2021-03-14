@@ -1,7 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 
-const { consumeToken, errorHandler } = require('middleware');
+const { consumeToken, errorHandler, missingPath } = require('middleware');
 
 const routes = require('./routes');
 
@@ -13,6 +13,7 @@ app.use(express.json({ limit: '30mb' }));
 app.use(consumeToken);
 
 app.use('/', routes);
+app.use(missingPath);
 app.use(errorHandler);
 
 module.exports = app;

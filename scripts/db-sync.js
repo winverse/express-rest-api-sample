@@ -1,6 +1,6 @@
 require('env');
 const db = require('database/db');
-const sync = require('database/sync');
+const { sync } = require('database/sync');
 
 const isDev = process.env.NODE_ENV !== 'production';
 

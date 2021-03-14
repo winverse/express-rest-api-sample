@@ -1,6 +1,7 @@
 require('env');
 const app = require('app');
 const getConnection = require('database/get-connection');
+const { associate } = require('database/sync');
 
 const { PORT } = process.env;
 
@@ -9,6 +10,7 @@ if (!PORT) {
 }
 
 getConnection();
+associate();
 
 // 서버 동작
 const server = app.listen(PORT, () => {

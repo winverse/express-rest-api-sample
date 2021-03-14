@@ -1,7 +1,6 @@
 const crypto = require('crypto');
 const Sequelize = require('sequelize');
 const db = require('database/db');
-
 const { generateToken } = require('lib/token');
 
 const { PASSWORD_SALT } = process.env;
@@ -36,8 +35,8 @@ const User = db.define(
     password: {
       type: Sequelize.STRING,
     },
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE,
+    createdAt: { type: Sequelize.DATE, field: 'created_at' },
+    updatedAt: { type: Sequelize.DATE, field: 'updated_at' },
   },
   {
     indexs: [
@@ -50,6 +49,13 @@ const User = db.define(
     },
   },
 );
+
+User.associate = models => {
+  User.hasMany(models.post, {
+    foreignKey: 'fkUserId',
+    as: 'posts',
+  });
+};
 
 // classMethods
 User.register = async function register({

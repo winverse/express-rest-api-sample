@@ -16,6 +16,7 @@ const refresh = async (res, refreshToken) => {
 
     return user;
   } catch (err) {
+    console.log(err);
     throw new Error(err);
   }
 };
@@ -49,7 +50,7 @@ const consumeToken = async (req, res, next) => {
       const user = await refresh(res, refreshToken);
       req.user = user;
     } catch (e) {
-      throw new Error(e);
+      return next(e);
     }
   }
 

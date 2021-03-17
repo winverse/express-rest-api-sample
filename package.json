@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "author": "winverse",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/winverse/express-rest-api-sample"
+  },
   "scripts": {
     "dev": " NODE_PATH=./src nodemon ./src/server.js",
     "db:migrate": "NODE_PATH=./src ./scripts/db-migrate.sh",

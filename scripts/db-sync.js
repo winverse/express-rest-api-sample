@@ -1,4 +1,5 @@
 require('env');
+require('./models');
 const db = require('database/db');
 const { sync } = require('database/sync');
 

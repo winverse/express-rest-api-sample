@@ -1,5 +1,5 @@
 require('env');
-require('./models');
+require('database/models');
 const db = require('database/db');
 const { sync } = require('database/sync');
 

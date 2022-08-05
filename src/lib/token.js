@@ -43,14 +43,14 @@ const setTokenCookie = (res, tokens) => {
   res.cookie('access_token', accessToken, {
     httpOnly: true,
     domain: !IS_DEV ? CLIENT_HOST : undefined,
-    maxAge: 1000 * 60 * 60 * 1, // 1hour
+    maxAge: 60 * 60 * 1, // 1hour
     secure: !IS_DEV,
   });
 
   res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
     domain: !IS_DEV ? CLIENT_HOST : undefined,
-    maxAge: 1000 * 60 * 60 * 24 * 30, // 30day
+    maxAge: 60 * 60 * 24 * 30, // 30day
     secure: !IS_DEV,
   });
 };

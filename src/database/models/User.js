@@ -84,7 +84,7 @@ User.register = async function register({
 User.prototype.generateUserToken = async function generateUserToken() {
   const refreshToken = await generateToken(
     {
-      user: this,
+      userId: this.id,
     },
     {
       subject: 'refresh_token',

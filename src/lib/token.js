@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 
 const { SECRET_KEY, CLIENT_HOST, API_HOST } = process.env;
 
-console.log('process.env', process.env);
 if (!SECRET_KEY || !CLIENT_HOST || !API_HOST) {
+  console.log('process.env', process.env);
   throw new Error('MISSING_ENVAR');
 }
 

@@ -14,6 +14,7 @@ async function excute() {
     await db.authenticate();
     sync();
     console.log('Sync successfully...');
+    process.exit(0);
   } catch (err) {
     console.error('Unable to sync:', err);
   }

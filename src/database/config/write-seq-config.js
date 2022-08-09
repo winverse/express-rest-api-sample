@@ -10,7 +10,6 @@ const {
   POSTGRES_PW,
 } = process.env;
 
-console.log('process.env', process.env);
 const dbInfo = {
   username: POSTGRES_USER,
   password: POSTGRES_PW,

@@ -18,7 +18,7 @@ exports.uploads = async (req, res) => {
   const { mimetype, size, path: filePath, filename } = file;
 
   const imageRegex = /^image\/(.*?)/; // 이미지 형식
-  console.log('mimetype', mimetype);
+
   if (!imageRegex.test(mimetype)) {
     unlinkFile(filePath);
     res.status(400).send('Unacceptable file extensions');
